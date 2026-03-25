@@ -1,0 +1,5 @@
+Araç Fiyat Tahmini - Model Sonuçları
+-----------------------------------
+R2 Score : 0.9547
+MAE      : 1323.81
+RMSE     : 1891.75
