@@ -4,23 +4,27 @@
 
 Bu projede kullanılan veri seti, araçlara ait teknik özellikler, fiziksel özellikler ve kategorik bilgilerden oluşmaktadır. Amaç, bu değişkenlerden yararlanarak araç fiyatını tahmin etmek ve araçları fiyat seviyelerine göre sınıflandırmaktır.
 
-Veri seti, araç fiyatını etkileyebilecek birçok faktörü içerdiği için hem regresyon hem de sınıflandırma problemleri için uygun bir yapı sunmaktadır.
+Veri seti, araç fiyatını etkileyebilecek birçok faktörü içerdiği için hem **regresyon** hem de **sınıflandırma problemleri** için uygun bir yapı sunmaktadır.
 
 ---
 
 ## 📌 Genel Bilgiler
 
-- Satır sayısı: 205  
-- Sütun sayısı: 26  
+- Satır sayısı: **205**  
+- Sütun sayısı: **26**  
+- Kategorik sütun sayısı: **11**  
+- Sayısal sütun sayısı: **14**  
 - Hedef değişken: `price`  
-- Problem türü: Regresyon + İkili sınıflandırma  
-- Eksik veri: Yok  
+- Problem türü: **Regresyon + İkili sınıflandırma**  
+- Eksik veri: **Yok**
 
 ---
 
 ## 🎯 Hedef Değişken
 
-Bu projede hedef değişken `price` sütunudur.
+Bu projede hedef değişken:
+
+- `price` → araç fiyatı  
 
 Sınıflandırma problemi için:
 
@@ -29,13 +33,63 @@ Sınıflandırma problemi için:
 
 ---
 
+## 🧩 Kategorik Değişkenler
+
+| Sütun | Açıklama |
+|------|--------|
+| CarName | Araç adı |
+| fueltype | Yakıt türü |
+| aspiration | Motor tipi |
+| doornumber | Kapı sayısı |
+| carbody | Araç tipi |
+| drivewheel | Çekiş sistemi |
+| enginelocation | Motor konumu |
+| enginetype | Motor tipi |
+| cylindernumber | Silindir sayısı |
+| fuelsystem | Yakıt sistemi |
+| brand | Araç markası (CarName’den türetildi) |
+
+---
+
+## 🔢 Sayısal Değişkenler
+
+| Sütun | Açıklama |
+|------|--------|
+| symboling | Araç risk skoru |
+| wheelbase | Dingil mesafesi |
+| carlength | Araç uzunluğu |
+| carwidth | Araç genişliği |
+| carheight | Araç yüksekliği |
+| curbweight | Araç ağırlığı |
+| enginesize | Motor hacmi |
+| boreratio | Silindir çapı |
+| stroke | Piston hareketi |
+| compressionratio | Sıkıştırma oranı |
+| horsepower | Beygir gücü |
+| peakrpm | Maksimum devir |
+| citympg | Şehir içi yakıt tüketimi |
+| highwaympg | Uzun yol yakıt tüketimi |
+
+---
+
 ## 🧹 Veri Ön İşleme
 
-- `car_ID` kaldırıldı  
-- `CarName → brand` dönüştürüldü  
-- Kategorik veriler encode edildi  
+Modelleme öncesinde aşağıdaki işlemler uygulanmıştır:
+
+- `car_ID` sütunu kaldırıldı  
+- `CarName → brand` dönüşümü yapıldı  
+- Kategorik değişkenler encode edildi  
 - Sayısal veriler ölçeklendi  
 - Veri %80 eğitim / %20 test olarak ayrıldı  
+
+---
+
+## 📊 Veri Ön İşleme Sonrası
+
+- Giriş değişkeni (X): **25 sütun**  
+- Hedef değişken (y): **1 sütun**  
+- Eğitim veri: **164 satır**  
+- Test veri: **41 satır**
 
 ---
 
@@ -47,11 +101,11 @@ Sınıflandırma problemi için:
 - MAE: **1323.81**  
 - RMSE: **1891.75**
 
-✔ Yüksek doğruluk ile fiyat tahmini yapmaktadır.
+✔ Model araç fiyatını yüksek doğrulukla tahmin etmektedir.
 
 ---
 
-### 🔹 Classification Modelleri
+## 🔹 Classification Modelleri
 
 | Model | Accuracy | Precision | Recall | F1-score |
 |------|---------|----------|--------|---------|
@@ -82,12 +136,19 @@ Makine öğrenmesi yöntemlerinin gerçek dünya problemlerinde etkili olduğu g
 
 ---
 
-## 🛠 Kullanılan Teknolojiler
+## 🔄 Model Pipeline
 
-- Python  
-- Pandas  
-- NumPy  
-- Scikit-learn  
-- Matplotlib  
-- XGBoost  
-
+```text
+Veri Seti
+   ↓
+Veri Temizleme
+   ↓
+Feature Engineering (CarName → brand)
+   ↓
+Encoding + Scaling
+   ↓
+Train/Test Split
+   ↓
+Model Training
+   ↓
+Evaluation (Accuracy, F1, R2)
