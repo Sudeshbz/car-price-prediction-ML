@@ -1,4 +1,4 @@
-# car-price-prediction-ML# 🚗 Araç Fiyat Tahmini ve Sınıflandırma Uygulaması
+# 🚗 Araç Fiyat Tahmini ve Sınıflandırma Uygulaması
 
 ## 📊 Veri Seti Özeti
 
